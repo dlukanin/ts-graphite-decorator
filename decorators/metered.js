@@ -12,7 +12,7 @@ function write(key, execTimeMs, graphiteClient) {
 }
 
 module.exports = function Metered(key, graphiteClient) {
-    return function(method, name, descriptor) {
+    return function(object, name, descriptor) {
         const originalMethod = descriptor.value;
         descriptor.value = function(...args) {
             const start = now();
