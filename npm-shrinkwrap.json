@@ -1,0 +1,11 @@
+{
+  "name": "ts-graphite-decorator",
+  "version": "0.0.1",
+  "dependencies": {
+    "performance-now": {
+      "version": "2.1.0",
+      "from": "performance-now@>=2.1.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/performance-now/-/performance-now-2.1.0.tgz"
+    }
+  }
+}
