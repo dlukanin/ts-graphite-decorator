@@ -16,7 +16,7 @@ module.exports = function Metered(key, graphiteClient) {
         const originalMethod = descriptor.value;
         descriptor.value = function(...args) {
             const start = now();
-            let result = originalMethod.apply(object, args);
+            let result = originalMethod.apply(this, args);
             if (result && typeof result.then === 'function') {
                 return result.then((val) => {
                     const execTimeMs = (now() - start).toFixed(3);
