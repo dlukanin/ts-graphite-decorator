@@ -11,6 +11,8 @@ Note that you should open graphite connection using graphite module (or it's own
 
 ## Changelog
 
+0.0.2 - Some inner module fixes.
+
 0.0.1 - Hello world! First version with Metered decorator.
 
 ## Usage
