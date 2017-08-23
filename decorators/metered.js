@@ -1,14 +1,23 @@
 const now = require('performance-now');
+const UNLOCK_TIMEOUT_MS = 60000;
+
+let locked = false;
 
 function write(key, execTimeMs, graphiteClient) {
     const result = {};
     result[key] = execTimeMs;
 
-    graphiteClient.write(result, function(err) {
-        if (err) {
-            console.error('graphite client write error', err);
-        }
-    });
+    if (!locked) {
+        locked = true;
+
+        setTimeout(() => {locked = false}, UNLOCK_TIMEOUT_MS);
+
+        graphiteClient.write(result, function(err) {
+            if (err) {
+                console.error('graphite client write error', err);
+            }
+        });
+    }
 }
 
 module.exports = function Metered(key, graphiteClient) {
