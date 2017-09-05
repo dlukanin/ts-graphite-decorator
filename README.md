@@ -11,6 +11,8 @@ Note that you should open graphite connection using graphite module (or it's own
 
 ## Changelog
 
+0.0.5 - Some bugfixes
+
 0.0.4 - Added logging interval - 60 sec (TODO - configure it)
 
 0.0.2 & 0.0.3 - Some inner module fixes.

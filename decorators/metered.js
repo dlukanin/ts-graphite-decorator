@@ -1,16 +1,16 @@
 const now = require('performance-now');
 const UNLOCK_TIMEOUT_MS = 60000;
 
-let locked = false;
+let locked = {};
 
 function write(key, execTimeMs, graphiteClient) {
     const result = {};
     result[key] = execTimeMs;
 
-    if (!locked) {
-        locked = true;
+    if (!locked[key]) {
+        locked[key] = true;
 
-        setTimeout(() => {locked = false}, UNLOCK_TIMEOUT_MS);
+        setTimeout(() => {locked[key] = false}, UNLOCK_TIMEOUT_MS);
 
         graphiteClient.write(result, function(err) {
             if (err) {
