@@ -1,6 +1,6 @@
 {
   "name": "ts-graphite-decorator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
     "performance-now": {
       "version": "2.1.0",
