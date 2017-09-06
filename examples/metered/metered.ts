@@ -4,7 +4,7 @@ import * as graphite from 'graphite';
 const client = graphite.createClient('plaintext://your-graphite-url:2003');
 
 class Test {
-    @Metered('features.test.key', client)
+    @Metered('key', client)
     public meteredExample() {
         console.log('started method');
         for (let i = 0; i <= 100; i++) {

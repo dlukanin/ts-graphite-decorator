@@ -10,7 +10,7 @@ const index_1 = require("../../index");
 const graphite = require("graphite");
 const client = graphite.createClient('plaintext://your-graphite-url:2003');
 class Test {
-    meteredExample() {
+    rpmExample() {
         console.log('started method');
         for (let i = 0; i <= 100; i++) {
             let foo = i + Math.random();
@@ -18,23 +18,17 @@ class Test {
         console.log('ended method');
         return true;
     }
-    meteredPromiseExample() {
-        console.log('started promise method');
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                console.log('ended promise method');
-                resolve(true);
-            }, 1000);
-        });
-    }
 }
 __decorate([
-    index_1.Metered('key', client)
-], Test.prototype, "meteredExample", null);
-__decorate([
-    index_1.Metered('some.test.key', client)
-], Test.prototype, "meteredPromiseExample", null);
+    index_1.RPM('key', client)
+], Test.prototype, "rpmExample", null);
 const test = new Test();
-test.meteredExample();
-test.meteredPromiseExample();
-//# sourceMappingURL=metered.js.map
+test.rpmExample();
+test.rpmExample();
+test.rpmExample();
+test.rpmExample();
+setTimeout(() => {
+    test.rpmExample();
+    test.rpmExample();
+}, 60000);
+//# sourceMappingURL=rpm.js.map

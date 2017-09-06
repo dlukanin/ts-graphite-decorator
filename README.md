@@ -46,6 +46,31 @@ test.meteredExample(); // graphite got some info about your method exec time
 
 ```
 
+```
+import {Metered} from 'ts-graphite-decorator';
+import * as graphite from 'graphite';
+
+const client = graphite.createClient('plaintext://your-graphite-url:2003');
+
+class Test {
+    @RPM('key', client)
+    public rpmExample() {
+        console.log('started method');
+        for (let i = 0; i <= 100; i++) {
+            let foo = i + Math.random();
+        }
+
+        console.log('ended method');
+
+        return true;
+    }
+}
+
+const test = new Test();
+test.rpmExample(); // graphite will get info about 1 rpm/min
+
+```
+
 Check out the examples folder: https://github.com/dlukanin/ts-graphite-decorator/tree/master/examples
 
 ## License
