@@ -11,7 +11,9 @@ Note that you should open graphite connection using graphite module (or it's own
 
 ## Changelog
 
-0.0.5 - Some bugfixes
+0.0.7 - Now you can pass graphite connection string in decorator w/o client.
+
+0.0.5, 0.0.6 - Some bugfixes
 
 0.0.4 - Added logging interval - 60 sec (TODO - configure it)
 
@@ -54,6 +56,30 @@ const client = graphite.createClient('plaintext://your-graphite-url:2003');
 
 class Test {
     @RPM('key', client)
+    public rpmExample() {
+        console.log('started method');
+        for (let i = 0; i <= 100; i++) {
+            let foo = i + Math.random();
+        }
+
+        console.log('ended method');
+
+        return true;
+    }
+}
+
+const test = new Test();
+test.rpmExample(); // graphite will get info about 1 rpm/min
+
+```
+
+Or
+
+```
+import {Metered} from 'ts-graphite-decorator';
+
+class Test {
+    @RPM('key', 'plaintext://your-graphite-url:2003')
     public rpmExample() {
         console.log('started method');
         for (let i = 0; i <= 100; i++) {

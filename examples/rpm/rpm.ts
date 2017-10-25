@@ -1,10 +1,7 @@
 import {RPM} from '../../index';
-import * as graphite from 'graphite';
-
-const client = graphite.createClient('plaintext://your-graphite-url:2003');
 
 class Test {
-    @RPM('key', client)
+    @RPM('key', 'plaintext://your-graphite-url:2003')
     public rpmExample() {
         console.log('started method');
         for (let i = 0; i <= 100; i++) {
@@ -25,4 +22,4 @@ test.rpmExample();
 setTimeout(() => {
     test.rpmExample();
     test.rpmExample();
-}, 60000)
+}, 60000);

@@ -1,3 +1,4 @@
+const {getClient} = require('../client/graphite');
 const now = require('performance-now');
 const UNLOCK_TIMEOUT_MS = 60000;
 
@@ -21,6 +22,8 @@ function write(key, execTimeMs, graphiteClient) {
 }
 
 module.exports = function Metered(key, graphiteClient) {
+    graphiteClient = getClient(graphiteClient);
+
     return function(object, name, descriptor) {
         const originalMethod = descriptor.value;
         descriptor.value = function(...args) {

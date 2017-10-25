@@ -1,3 +1,5 @@
+const {getClient} = require('../client/graphite');
+
 const UNLOCK_TIMEOUT_MS = 60000;
 // TODO fixme for multiple clients
 let activeGraphiteClient;
@@ -21,7 +23,8 @@ setInterval(() => {
 }, UNLOCK_TIMEOUT_MS);
 
 module.exports = function RPM(key, graphiteClient) {
-    activeGraphiteClient = graphiteClient;
+    activeGraphiteClient = getClient(graphiteClient);
+
     return function(object, name, descriptor) {
         const originalMethod = descriptor.value;
         descriptor.value = function(...args) {

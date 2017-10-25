@@ -7,8 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../../index");
-const graphite = require("graphite");
-const client = graphite.createClient('plaintext://your-graphite-url:2003');
 class Test {
     rpmExample() {
         console.log('started method');
@@ -20,7 +18,7 @@ class Test {
     }
 }
 __decorate([
-    index_1.RPM('key', client)
+    index_1.RPM('key', 'plaintext://your-graphite-url:2003')
 ], Test.prototype, "rpmExample", null);
 const test = new Test();
 test.rpmExample();
