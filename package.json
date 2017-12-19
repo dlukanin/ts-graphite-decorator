@@ -1,6 +1,6 @@
 {
   "name": "ts-graphite-decorator",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Some expiremental ts decorators for graphite powered by graphite package",
   "main": "index.js",
   "scripts": {
