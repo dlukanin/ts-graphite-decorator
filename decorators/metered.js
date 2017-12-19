@@ -15,7 +15,7 @@ function write(key, execTimeMs, graphiteClient) {
 
         graphiteClient.write(result, function(err) {
             if (err) {
-                console.error('graphite client write error', err);
+                console.error('graphite client write error', err.message);
             }
         });
     }
