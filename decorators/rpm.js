@@ -15,7 +15,8 @@ setInterval(() => {
     if (Object.keys(rpm).length) {
         activeGraphiteClient.write(rpm, function(err) {
             if (err) {
-                console.error('graphite client write error', err.message);
+                // temp disable error reporting
+                // console.error('graphite client write error', err.message);
             }
         });
         rpm = {};
