@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/dlukanin/ts-graphite-decorator#readme",
   "dependencies": {
-    "graphite": "0.0.7",
-    "performance-now": "^2.1.0"
+    "graphite": "0.1.4",
+    "performance-now": "2.1.0"
   }
 }
