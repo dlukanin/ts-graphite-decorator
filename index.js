@@ -1,2 +1,2 @@
-exports.Metered = require('./decorators/metered');
-exports.RPM = require('./decorators/rpm');
+exports.Metered = require('./src/decorators/metered');
+exports.RPM = require('./src/decorators/rpm');
