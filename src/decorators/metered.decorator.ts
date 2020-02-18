@@ -1,10 +1,11 @@
-const {getClient} = require('../client/graphite');
-const now = require('performance-now');
+import { getClient } from '../graphite.client';
+import Now from 'performance-now';
+
 const UNLOCK_TIMEOUT_MS = 60000;
 
-let locked = {};
+const locked = {};
 
-function write(key, execTimeMs, graphiteClient) {
+function write(key: string, execTimeMs: string, graphiteClient: any): void {
     const result = {};
     result[key] = execTimeMs;
 
@@ -22,26 +23,27 @@ function write(key, execTimeMs, graphiteClient) {
     }
 }
 
-module.exports = function Metered(key, graphiteClient) {
+export function Metered(key: string, graphiteClient: any): MethodDecorator {
     graphiteClient = getClient(graphiteClient);
 
-    return function(object, name, descriptor) {
+    return function(object: Record<string, any>, name: string, descriptor: PropertyDescriptor): void {
         const originalMethod = descriptor.value;
-        descriptor.value = function(...args) {
-            const start = now();
-            let result = originalMethod.apply(this, args);
+
+        descriptor.value = function(...args): any {
+            const start = Now();
+            const result = originalMethod.apply(this, args);
             if (result && typeof result.then === 'function') {
                 return result.then((val) => {
-                    const execTimeMs = (now() - start).toFixed(3);
+                    const execTimeMs = (Now() - start).toFixed(3);
                     write(key, execTimeMs, graphiteClient);
 
                     return val;
                 });
             }
 
-            const execTimeMs = (now() - start).toFixed(3);
+            const execTimeMs = (Now() - start).toFixed(3);
             write(key, execTimeMs, graphiteClient);
             return result;
         };
     }
-};
+}

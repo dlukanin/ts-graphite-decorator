@@ -1,11 +1,11 @@
-import {RPM} from '../../index';
+import { RPM } from '../../src/index';
 
 class Test {
     @RPM('key', 'plaintext://your-graphite-url:2003')
-    public rpmExample() {
+    public rpmExample(): boolean {
         console.log('started method');
         for (let i = 0; i <= 100; i++) {
-            let foo = i + Math.random();
+            // const foo = i + Math.random();
         }
 
         console.log('ended method');
