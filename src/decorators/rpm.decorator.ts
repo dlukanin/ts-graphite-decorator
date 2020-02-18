@@ -1,12 +1,13 @@
-const {getClient} = require('../client/graphite');
+import { getClient } from '../graphite.client';
 
 const UNLOCK_TIMEOUT_MS = 60000;
-// TODO fixme for multiple clients
+
+// TODO: fixme for multiple clients
 let activeGraphiteClient;
 
 let rpm = {};
 
-function increaseCount(key) {
+function increaseCount(key: string): void {
     rpm[key] = rpm[key] || 0;
     rpm[key]++;
 }
@@ -23,15 +24,16 @@ setInterval(() => {
     }
 }, UNLOCK_TIMEOUT_MS);
 
-module.exports = function RPM(key, graphiteClient) {
+export function RPM(key: string, graphiteClient: any): MethodDecorator {
     activeGraphiteClient = getClient(graphiteClient);
 
-    return function(object, name, descriptor) {
+    return function(object: Record<string, any>, name: string, descriptor: PropertyDescriptor): void {
         const originalMethod = descriptor.value;
-        descriptor.value = function(...args) {
-            increaseCount(key, graphiteClient);
 
-            let result = originalMethod.apply(this, args);
+        descriptor.value = function(...args): any {
+            increaseCount(key);
+
+            const result = originalMethod.apply(this, args);
             if (result && typeof result.then === 'function') {
                 return result.then((val) => {
                     return val;
@@ -41,4 +43,4 @@ module.exports = function RPM(key, graphiteClient) {
             return result;
         };
     }
-};
+}
