@@ -1,14 +1,14 @@
-import {Metered} from '../../index';
-import * as graphite from 'graphite';
+import * as Graphite from 'graphite';
+import { Metered } from '../../src/index';
 
-const client = graphite.createClient('plaintext://your-graphite-url:2003');
+const client = Graphite.createClient('plaintext://your-graphite-url:2003');
 
 class Test {
     @Metered('key', client)
-    public meteredExample() {
+    public meteredExample(): boolean {
         console.log('started method');
         for (let i = 0; i <= 100; i++) {
-            let foo = i + Math.random();
+            // const foo = i + Math.random();
         }
 
         console.log('ended method');
@@ -17,9 +17,9 @@ class Test {
     }
 
     @Metered('some.test.key', client)
-    public meteredPromiseExample() {
+    public meteredPromiseExample(): Promise<boolean> {
         console.log('started promise method');
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             setTimeout(() => {
                 console.log('ended promise method');
                 resolve(true)

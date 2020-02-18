@@ -2,3 +2,4 @@ examples
 node_modules
 .idea
 npm-shrinkwrap.json
+src/

@@ -1,10 +1,13 @@
 {
   "name": "ts-graphite-decorator",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Some expiremental ts decorators for graphite powered by graphite package",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
   "repository": {
     "type": "git",
@@ -24,5 +27,12 @@
   "dependencies": {
     "graphite": "0.0.7",
     "performance-now": "^2.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.1",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.20.0",
+    "eslint": "^6.8.0",
+    "typescript": "^3.7.5"
   }
 }

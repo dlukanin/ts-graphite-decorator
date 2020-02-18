@@ -1,8 +1,9 @@
-src
-test
+src/
+test/
 .idea
 .travis.yml
 tslint.json
 .babelrc
 .eslintrc.js
-node_modules
+node_modules/
+dist/
