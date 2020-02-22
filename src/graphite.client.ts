@@ -1,13 +1,13 @@
-import * as Graphite from 'graphite';
+import GraphiteClient from "graphite";
 
 const clients = {};
 
-export function getClient(client: string): any {
+export function getClient(client: string | GraphiteClient): GraphiteClient {
     if (typeof client !== 'string') {
         return client;
     }
 
-    clients[client] = clients[client] || Graphite.createClient(client);
+    clients[client] = clients[client] || GraphiteClient.createClient(client);
 
     return clients[client];
 }
