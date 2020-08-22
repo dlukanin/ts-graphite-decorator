@@ -16,8 +16,7 @@ function write(key: string, execTimeMs: string, graphiteClient: any): void {
 
         graphiteClient.write(result, function(err) {
             if (err) {
-                // temp disable error reporting
-                // console.error('graphite client write error', err.message);
+                console.error('graphite client write error', err.message);
             }
         });
     }

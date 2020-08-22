@@ -10,7 +10,6 @@ You can get more info about typescript decorators on the [official typescript do
 Note that you should open graphite connection using graphite module (or it's own custom implementation) in your own code.
 
 ## Changelog
-
 0.0.7 - Now you can pass graphite connection string in decorator w/o client.
 
 0.0.5, 0.0.6 - Some bugfixes
