@@ -1,5 +1,5 @@
 {
-  "name": "ts-graphite-decorator",
+  "name": "@dlukanin/ts-graphite-decorator",
   "version": "1.0.0",
   "description": "Some expiremental ts decorators for graphite powered by graphite package",
   "main": "dist/index.js",
@@ -32,5 +32,8 @@
     "@types/graphite": "^0.1.0",
     "@types/node": "^10.17.28",
     "typescript": "^4.0.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
