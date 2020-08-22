@@ -1,5 +1,10 @@
 # ts-graphite-decorator
 
+
+```
+npm i @dlukanin/ts-graphite-decorator
+```
+
 Simple decorator collection for using it with [graphite](https://www.npmjs.com/package/graphite) package.
 
 Decorators are written using **current typescript decorators implementation** and
