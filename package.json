@@ -1,6 +1,6 @@
 {
   "name": "@dlukanin/ts-graphite-decorator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Some expiremental ts decorators for graphite powered by graphite package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
